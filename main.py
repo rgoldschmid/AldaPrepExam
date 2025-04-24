@@ -13,8 +13,21 @@
 # Attention: If the two values result in different categories, the higher category counts as the overall assessment!
 
 def check_blood_pressure():
-    # write your solution here
-    return
+    sys = int(input('Please enter Systolic value: '))
+    dia = int(input('Please enter Diastolic value: '))
+    if sys < 0 or dia < 0:
+        return "Invalid input"
+    if sys > 180 or dia > 120:
+        return "Hypertensive Crisis - Immediate medical attention needed"
+    elif sys >= 140 or dia >= 90:
+        return "Stage 2 Hypertension"
+    elif (130 <= sys <= 139) or (80 <= dia <= 89):
+        return "Stage 1 Hypertension"
+    elif (120 <= sys <= 129) and dia < 80:
+        return "Elevated"
+    elif sys < 120 and dia < 80:
+        return "Normal"
+    return None
 
 
 # Write a magicSquareMatrix function to which two parameters are passed.
@@ -33,14 +46,28 @@ def check_blood_pressure():
 # You can then increase the numerical value and cast to character again, to get the next letter:
 #   next = chr(number + 1) # will print 'B'
 # see running example below
-def magic_square():
-    # write your solution here
+def increase_letter_number(ln):
+    if ln >= 90:
+        return 65
+    else:
+        return ln + 1
 
-    # next line are just a showcase for ord() and chr()
-    letter = 'A'
-    number_from_letter = ord(letter)
-    next_letter = chr(number_from_letter + 1)
-    print(next_letter)
+def magic_square(size: int, letter: str):
+    letter_number = ord(letter)
+    if (size <= 0 or size > 42) and (letter_number < 65 or letter_number > 90):
+        return "Invalid number and invalid symbol"
+    if size <= 0 or size > 42:
+        return "Invalid number"
+    if letter_number < 65 or letter_number > 90:
+        return "Invalid symbol"
 
-    return ""
+    result = ""
+    for x in range(size):
+        for y in range(size):
+            result += chr(letter_number) + " "
+            letter_number = increase_letter_number(letter_number)
+        result += "\n"
+    return result
 
+result = magic_square(3, 'X')
+print(result)
