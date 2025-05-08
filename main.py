@@ -46,6 +46,11 @@ def check_blood_pressure():
 # You can then increase the numerical value and cast to character again, to get the next letter:
 #   next = chr(number + 1) # will print 'B'
 # see running example below
+
+# Constants
+CHAR_A = 65
+CHAR_Z = 90
+
 def increase_letter_number(ln):
     if ln >= 90:
         return 65
@@ -54,11 +59,11 @@ def increase_letter_number(ln):
 
 def magic_square(size: int, letter: str):
     letter_number = ord(letter)
-    if (size <= 0 or size > 42) and (letter_number < 65 or letter_number > 90):
+    if (size <= 0 or size > 42) and (letter_number < CHAR_A or letter_number > CHAR_Z):
         return "Invalid number and invalid symbol"
     if size <= 0 or size > 42:
         return "Invalid number"
-    if letter_number < 65 or letter_number > 90:
+    if letter_number < CHAR_A or letter_number > CHAR_Z:
         return "Invalid symbol"
 
     result = ""
